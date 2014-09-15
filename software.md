@@ -67,4 +67,10 @@ The Brendel Group requires testing for all software development projects and end
 
 ## Collaboration
 
-Coming soon!
+Git and GitHub make it easy for multiple multiple group members (or collaborators) to actively work on the same software development effort.
+For projects involving multiple active contributors, the Brendel Group uses the [GitHub flow](https://guides.github.com/introduction/flow/index.html) model for collaborative development.
+
+- The primary repository for the project is owned by the **BrendelGroup** GitHub organization, and each contributor maintains their own fork. For example, if the project is called ``RNASeqer``, then the main repo will be at ``BrendelGroup/RNASeqer`` while group members ``alice`` and ``bob`` will have their own forks at ``alice/RNASeqer`` and ``bob/RNASeqer``.
+- Each active contributor maintains a local clone of their fork on their workstation(s) and uses ``git push`` and ``git pull`` to syncronize with their fork on GitHub.
+- When a contributor wishes to integrate their work with the primary repository, they use GitHub's pull request feature. This gives other active contributors a chance to review the changes, evaluate new testing procedures (if any), and provide suggestions or other feedback. If the changes look good, another contributor will merge the pull request. If more work is needed, the pull request remains open and the contributor can continue adding new commits to the pull request until all concerns are addressed.
+- When a project has multiple active contributors, **no one should accept their own pull requests**. Doing so could introduce unnecessary conflicts in the code. This requirement is not enforced by GitHub, so each contributor must regulate their own behavior in this regard.
