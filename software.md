@@ -38,7 +38,9 @@ Group members have individual GitHub accounts, but are also added to the **Brend
 
 ## Bug tracking
 
-Coming soon!
+GitHub automatically creates an issue tracker for each repository it hosts.
+The issue tracker can manage bug reports, feature requests, questions, and tasks lists, and is an important tool for community engagement.
+The Brendel Group discourages use of independent bug tracking software and endorses the use of GitHub's issue tracking features for software development.
 
 ## Backup
 
