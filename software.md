@@ -51,7 +51,19 @@ Secondary backup options include the iPlant Data Store, file hosting services li
 
 ## Testing
 
-Coming soon!
+Testing is the process by which you verify that your software actually does what it's intended to do.
+You should think about testing at a very early stage in the software development process.
+Ideally you would have tests prepared before a single line of code has been written, although this is a pretty high bar.
+It is very reasonable, though, to expect testing while the software is still in prototype.
+
+The Brendel Group requires testing for all software development projects and endorses the following best practices.
+
+- When possible, start with very small test data sets for which you can compute the correct answer using pen and paper. Go ahead and compute the answer **before running the test** to avoid biasing the test! It is ok to create small artificial data sets for testing, although when possible these should always be followed later by testing with full-size real data sets.
+- Unless you have a very good reason, all tests should be automated. For example, if your testing procedure involves running a set of 4 commands, you need to record that testing procedure somewhere: a README file, a wiki, etc. It does not take much additional work to place those 4 commands in a shell script or Makefile so that the testing procedure can be automated with a single command.
+- With the exception of small scripts and programs, most source code is organized into functions/subroutines/methods and  modules/classes. And when a software package includes more than one program, its common that a function or module is used by more than one program. There is a need to test at both levels.
+    - **Unit testing** is making sure that a particular function or class is behaving as expected. In unit testing, you should think of yourself in the role of a *software developer* and design the tests to make sure that you and other software developers can use each function or class with confidence.
+    - **Functional testing** is making sure that your program or programs behave as expected. In functional testing, you should think of yourself in the role of a *scientist* or *end users* and design the tests to make sure that you and other end users can use each program with confidence.
+- GitHub offers seamless integration with the [Travis CI service](https://travis-ci.org/). If your tests are automated in a script or Makefule (they should be!) then you can integrate with Travis by activating the TravisCI webhook in GitHub and adding a ``.travis.yml`` configuration file to your repository. Once configured, every time you push a new commit to GitHub Travis will download your code, run the tests, and alert you if there are any errors.
 
 ## Collaboration
 
