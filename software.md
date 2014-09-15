@@ -44,7 +44,10 @@ The Brendel Group discourages use of independent bug tracking software and endor
 
 ## Backup
 
-Coming soon!
+All research projects, whether they involve software development or not, should have a regular backup procedure.
+Software projects should be syncronized frequently with GitHub, which gives a single point of backup.
+The ``/DATA/GROUP`` partition, which is mounted to each of the Brendel Group's research VMs, can also be utilized for backup, as data stored there is protected by redundant backup.
+Secondary backup options include the iPlant Data Store, file hosting services like Box or Dropbox, or an external hard drive.
 
 ## Testing
 
