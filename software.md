@@ -47,7 +47,8 @@ The Brendel Group discourages use of independent bug tracking software and endor
 All research projects, whether they involve software development or not, should have a regular backup procedure.
 Software projects should be syncronized frequently with GitHub, which gives a single point of backup.
 The ``/DATA/GROUP`` partition, which is mounted to each of the Brendel Group's research VMs, can also be utilized for backup, as data stored there is protected by redundant backup.
-Secondary backup options include the iPlant Data Store, file hosting services like Box or Dropbox, or an external hard drive.
+For larger datasets, the Brendel Group has a dedicated 10TB datastore on IU's Data Capacitor II (dc2) at the following directory: ''/N/dc2/projects/brendelgroup/''. The Data Capacitor is mounted on IU's research computing systems, including [Big Red 2](bigred2.indiana.edu), [Mason](mason.indiana.edu) and [Karst](karst.uits.iu.edu). This is a good option for sra, fastq, wig and bam/sam files. 
+Secondary backup options include the iPlant Data Store, file hosting services like Box (which is available free of charge for IU students and employees), or an external hard drive. 
 
 ## Testing
 
@@ -74,3 +75,17 @@ For projects involving multiple active contributors, the Brendel Group uses the 
 - Each active contributor maintains a local clone of their fork on their workstation(s) and uses ``git push`` and ``git pull`` to syncronize with their fork on GitHub.
 - When a contributor wishes to integrate their work with the primary repository, they use GitHub's pull request feature. This gives other active contributors a chance to review the changes, evaluate new testing procedures (if any), and provide suggestions or other feedback. If the changes look good, another contributor will merge the pull request. If more work is needed, the pull request remains open and the contributor can continue adding new commits to the pull request until all concerns are addressed.
 - When a project has multiple active contributors, **no one should accept their own pull requests**. Doing so could introduce unnecessary conflicts in the code. This requirement is not enforced by GitHub, so each contributor must regulate their own behavior in this regard.
+
+## Manuscripts 
+
+The Brendel Group prefers the use of [svn](https://subversion.apache.org/) for the versioning of manuscripts. For coordinating all of the manuscripts currently under revision, we host a svn repository on our gremlin1 VM at [http://brendelgroup.org/svn/doc]. Ask one of VB, DS or RTR for your login credentials. Like git, svn can be used with a command-line interface, but there are also some useful GUI clients out there, such as svnX ad Tortoise. These also have the benefit of monitoring updates in real time. A link to a basic svn tutorial is found [here](http://www.tutorialspoint.com/svn/svn_basic_concepts.htm). The following are a few commands to get started with our svn repository.
+- To list the total number of manuscripts under version control, you would use the following command: ''svn list http://brendelgroup.org/svn/doc''
+- To check out a paper (let's say the TSRchictect paper), you would use the following command: ''svn checkout http://brendelgroup.com/svn/doc/TSR'' 
+- If you have "w" (write) access on a manuscript, you can contribute changes that were made to your local repo under version control using the following command: ''svn commit -m "these were my changes".'' Aim to write a descriptive but succinct commit message that tells everyone what was changed with your commit. 
+
+
+
+
+
+
+
