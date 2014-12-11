@@ -79,9 +79,10 @@ For projects involving multiple active contributors, the Brendel Group uses the 
 ## Manuscripts 
 
 The Brendel Group prefers the use of [svn](https://subversion.apache.org/) for the versioning of manuscripts. For coordinating all of the manuscripts currently under revision, we host a svn repository on our gremlin1 VM at [http://brendelgroup.org/svn/doc]. Ask one of VB, DS or RTR for your login credentials. Like git, svn can be used with a command-line interface, but there are also some useful GUI clients out there, such as svnX ad Tortoise. These also have the benefit of monitoring updates in real time. A link to a basic svn tutorial is found [here](http://www.tutorialspoint.com/svn/svn_basic_concepts.htm). The following are a few commands to get started with our svn repository.
-- To list the total number of manuscripts under version control, you would use the following command: ''svn list http://brendelgroup.org/svn/doc''
-- To check out a paper (let's say the TSRchictect paper), you would use the following command: ''svn checkout http://brendelgroup.com/svn/doc/TSR'' 
-- If you have "w" (write) access on a manuscript, you can contribute changes that were made to your local repo under version control using the following command: ''svn commit -m "these were my changes".'' Aim to write a descriptive but succinct commit message that tells everyone what was changed with your commit. 
+- To list the total number of manuscripts under version control, you would use the following command: > svn list http://brendelgroup.org/svn/doc
+- To check out a paper (let's say the TSRchictect paper), you would use the following command: > svn checkout http://brendelgroup.com/svn/doc/TSR
+- If you have "w" (write) access on a manuscript, you can contribute changes that were made to your local repo under version control using the following command: > svn commit -m "these were my changes".
+- Aim to write a descriptive but succinct commit message that tells everyone what was changed with your commit. 
 
 
 
