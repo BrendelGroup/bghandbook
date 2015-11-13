@@ -40,6 +40,7 @@ Group members have individual GitHub accounts, but are also added to the **Brend
         - the software should run (and compile, if necessary) on most/all UNIX machines
         - the software should be accompanied by one or more test data sets to validate that the software works correctly
     - Once the initial stable release is made, subsequent stable releases typically require less tedious work.
+    - Unless you have a very compelling reason, [Semantic Versioning](http://semver.org/) should be for assigning labels to stable releases.
 - The http://brendelgroup.org Bioinformatics2Go pages provide a secondary location to store and advertise stable software releases. Coordinate with Volker to host releases here.
 
 ## Bug tracking
