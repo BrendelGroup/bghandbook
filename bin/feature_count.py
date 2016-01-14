@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Usage: python feature_count.py < input.gff3
 
 from __future__ import print_function
 import sys
