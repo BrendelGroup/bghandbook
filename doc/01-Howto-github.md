@@ -1,4 +1,4 @@
-# 01-Howto-githup
+# 01-Howto-github
 
 If you got to this document, then you are on a good way - you must have learned that 1) the [Brendel Group](https://github.com/BrendelGroup/) is using __github__ to disseminate our bioinformatics software; and 2) we are using __git__ to manage our collaborative projects.
 Presumably you are a group member.
@@ -64,7 +64,7 @@ Continuing with our example:
 
 ```bash
 []git remote add upstream https://github.com/brendelgroup/bghandbook
-[]]git remote -v
+[]git remote -v
 origin	https://github.com/vpbrendel/bghandbook.git (fetch)
 origin	https://github.com/vpbrendel/bghandbook.git (push)
 upstream	https://github.com/brendelgroup/bghandbook (fetch)
