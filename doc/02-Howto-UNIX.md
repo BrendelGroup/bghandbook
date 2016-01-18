@@ -2,7 +2,7 @@
 
 The book <u>Bioinformatics Data Skills</u> by Vince Buffalo (available on [Amazon](http://www.amazon.com/Bioinformatics-Data-Skills-Reproducible-Research/dp/1449367372/) and [O'Reilly Books](http://shop.oreilly.com/product/0636920030157.do)) offers a great chapter on the UNIX shell (the "command line").
 The level of this material is intermediate, however, and assumes that the reader has basic proficiency with the shell.
-If you are just beginning to learn the UNIX shell, the following tutorial (or any number of others you can find with a [simple Google search](https://www.google.com/#q=linux+command+line+tutorial)) may provide a gentle transition to the level of material covered <u>Bioinformatics Data Skills</u>.
+If you are just beginning to learn the UNIX shell, the following tutorial (or any number of others you can find with a [simple Google search](https://www.google.com/#q=linux+command+line+tutorial)) may provide a gentle transition to the level of material covered in <u>Bioinformatics Data Skills</u>.
 
 **Note**: Computers running Linux or Mac OS X operating systems can be considered *UNIX machines*.
 Although there are some subtle differences between Mac and Linux (and even between different flavors of Linux), basic UNIX functionality should be consistent across these different operating systems.
