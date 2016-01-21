@@ -1,4 +1,4 @@
-This file only for testing purposes. This test was only for pushing a file to scratch. 
+This file is only for testing purposes. This test was only for pushing a file to scratch. 
 
 Test Questions: 
 1) Get the first 10 columns from the the top 5 rows of a file.
