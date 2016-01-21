@@ -1,0 +1,6 @@
+This file is only for testing purposes. This test was only for pushing a file to scratch. 
+
+Also, here are some unix and git test questions: 
+1) Get the first 10 columns from the the top 5 rows of a file.
+2) Make a new directory titled “TestingDirectory” on your desktop, make a copy of your file from number 1, and move the file copy into your “TestingDirectory” directory.
+3) Using git, write a line of code that would merge a remote repository into your local repository.
