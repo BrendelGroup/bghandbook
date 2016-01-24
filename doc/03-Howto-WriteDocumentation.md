@@ -10,7 +10,7 @@ Here we review several components of this question:
 Most of the documents in the handbook are prepared using the [Markdown](http://daringfireball.net/projects/markdown/) text-to-HTML conversion tool.
 The Markdown syntax is easy to learn and unobstrusive (reading a Markdown document as plain text is not a hardship).
 But more to the point, it allows you to produce a nice-looking document when viewed at GitHub or with a Markdown viewer.
-Please take a view minutes to learn all you need by following the [Mastering Markdown - GitHub Guide](https://guides.github.com/features/mastering-markdown/).
+Please take a few minutes to learn all you need by following the [Mastering Markdown - GitHub Guide](https://guides.github.com/features/mastering-markdown/).
 One nice editor and viewer for Markdown documents is [Atom](https://atom.io/); there are many other options.
 On our Fedora machines we used the following commands to install this editor:
 
@@ -64,7 +64,7 @@ Let's look at the last few commands the author of this document issued to edit t
 1013  git pull origin master
 ```
 
-Typically, one's history does not look that clean (and admittedly, the above was a bit edited to fit the current needs), but something like the above will be produced by the _history_ command, with the numbers in the first column numbering consecutive command and the second column showing the command as sent to the operating system.
+Typically, one's history does not look that clean (and admittedly, the above was a bit edited to fit the current needs), but something like the above will be produced by the _history_ command, with the numbers in the first column numbering consecutive command and the second column showing the commands as sent to the operating system.
 We can turn this rough draft into a nicer draft very quickly:
 
 ```
@@ -101,5 +101,5 @@ git pull origin master
 ```
 
 Often this edited file could be left in the directory as _0RECORD_ or even _0README_.
-If the record consists of various command that should be executed in that order, then a file like the one above with all comments started with the _#_ sign can even work as a script: _source 0RECORD_ will execute the non-comment lines in the file in order in the _bash_ shell.
+If the record consists of various commands that should be executed in that order, then a file like the one above with all comments started with the _#_ sign can even work as a script: _source 0RECORD_ will execute the non-comment lines in the file in that order in the _bash_ shell.
 Thus, your entire work will be reproducible (obviously, for the above this is only partly true because the content of the editing is not recorded in this example; more pertinent examples will be documented elsewhere).
