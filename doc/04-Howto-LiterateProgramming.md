@@ -40,6 +40,6 @@ There are a few significant differences though.
 - Jupyter offers the option of piecewise rendering and execution, whereas RStudio supports only rendering of complete Markdown documents.
   This can be a blessing and a curse: piecewise execution enables rapid testing of different settings or parameters, which could potentially take much longer if the entire notebook is large and requires tens of seconds to render.
   However, piecewise execution introduces the risk of a code block coming out of sync with its corresponding output or with other code blocks.
-  Before saving a Jupyter notebook, it is wise "reset the kernel" and execute all blocks one more time to make sure that piecewise rendering has not broken the flow of the code.
+  Before saving a Jupyter notebook, it is wise to "reset the kernel" (flush all variables and start with a clean slate) and execute all blocks one more time to make sure that piecewise rendering has not broken the flow of the code.
 - Jupyter offers support for many languages, whereas RStudio supports only code in R.
 - Jupyter notebooks (encoded as JSON files) are rendered automatically by GitHub, whereas R Markdown files must be manually rendered to HTML or PDF before they are shared.
