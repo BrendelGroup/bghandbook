@@ -26,7 +26,7 @@ There are three copies of the repository that you will need to track and navigat
 At the apex of your creative triangle is is the "__upstream__" repository which refers to the edited and approved version of the handbook as available in the Brendel Group owned [repository](https://github.com/BrendelGroup/bghandbook).
 At the base of the triangle are your personal __fork__ of the repository, referred to as "__origin__" and a __clone__ of the repository which we'll refer to as "__sandbox__".
 Your __sandbox__ will typically reside on your personal computer, let's say your laptop.
-That's where you play with new ideas, be theses documentation files or code.
+That's where you play with new ideas, be these documentation files or code.
 
 Setting up your __origin__ and __sandbox__ spaces could hardly be simpler: on the [upstream](https://github.com/BrendelGroup/bghandbook) github site, follow the instructions under the __Fork__ button.
 Once you have your __fork__, you will see the address for creating a clone (e.g., https://github.com/vpbrendel/bghandbook.git for user _vpbrendel_).
@@ -47,7 +47,7 @@ Edit and add documents, commit your changes as you have learned in the __git__ t
 []git push origin master
 ```
 
-Then view your changes at your __fork__ repositor on __github__.
+Then view your changes at your __fork__ repository on __github__.
 
 ### From "__origin__" to "__upstream__"
 
