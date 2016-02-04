@@ -13,7 +13,8 @@ There are many excellent resources on the internet, ranging from basic tutorials
 One of the best beginner's tutorials is [git-tutorial.pdf](http://www.cs.columbia.edu/~sedwards/classes/2013/4840/git-tutorial.pdf) by instructors at Columbia University.
 Follow the examples, play with the commands, and within the hour you will have learned the basic concepts and commands.
 
-When you are ready for more, take a look at the [Pro Git book](https://git-scm.com/book/en/v2).  You can't wish for more.
+When you are ready for more, take a look at [A Quick Introduction to Version Control with Git and GitHub](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004668); and finally delve into
+the [Pro Git book](https://git-scm.com/book/en/v2) (when you feel like you should work like a pro).
 
 To work with __github__, you need to set up an [account](https://github.com/join) first.
 
@@ -26,7 +27,7 @@ There are three copies of the repository that you will need to track and navigat
 At the apex of your creative triangle is is the "__upstream__" repository which refers to the edited and approved version of the handbook as available in the Brendel Group owned [repository](https://github.com/BrendelGroup/bghandbook).
 At the base of the triangle are your personal __fork__ of the repository, referred to as "__origin__" and a __clone__ of the repository which we'll refer to as "__sandbox__".
 Your __sandbox__ will typically reside on your personal computer, let's say your laptop.
-That's where you play with new ideas, be theses documentation files or code.
+That's where you play with new ideas, be these documentation files or code.
 
 Setting up your __origin__ and __sandbox__ spaces could hardly be simpler: on the [upstream](https://github.com/BrendelGroup/bghandbook) github site, follow the instructions under the __Fork__ button.
 Once you have your __fork__, you will see the address for creating a clone (e.g., https://github.com/vpbrendel/bghandbook.git for user _vpbrendel_).
@@ -47,7 +48,7 @@ Edit and add documents, commit your changes as you have learned in the __git__ t
 []git push origin master
 ```
 
-Then view your changes at your __fork__ repositor on __github__.
+Then view your changes at your __fork__ repository on __github__.
 
 ### From "__origin__" to "__upstream__"
 
@@ -80,4 +81,4 @@ upstream	https://github.com/brendelgroup/bghandbook (push)
 ```
 
 As you can see, all sides of the triangle correspond to paths being traveled at.
-After a while, these will be well-trodden paths for you! 
+After a while, these will be well-trodden paths for you!
