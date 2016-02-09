@@ -13,7 +13,8 @@ There are many excellent resources on the internet, ranging from basic tutorials
 One of the best beginner's tutorials is [git-tutorial.pdf](http://www.cs.columbia.edu/~sedwards/classes/2013/4840/git-tutorial.pdf) by instructors at Columbia University.
 Follow the examples, play with the commands, and within the hour you will have learned the basic concepts and commands.
 
-When you are ready for more, take a look at the [Pro Git book](https://git-scm.com/book/en/v2).  You can't wish for more.
+When you are ready for more, take a look at [A Quick Introduction to Version Control with Git and GitHub](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004668); and finally delve into
+the [Pro Git book](https://git-scm.com/book/en/v2) (when you feel like you should work like a pro).
 
 To work with __github__, you need to set up an [account](https://github.com/join) first.
 
@@ -83,4 +84,4 @@ upstream	https://github.com/brendelgroup/bghandbook (push)
 ```
 
 As you can see, all sides of the triangle correspond to paths being traveled at.
-After a while, these will be well-trodden paths for you! 
+After a while, these will be well-trodden paths for you!
