@@ -30,7 +30,10 @@ Your __sandbox__ will typically reside on your personal computer, let's say your
 That's where you play with new ideas, be these documentation files or code.
 
 Setting up your __origin__ and __sandbox__ spaces could hardly be simpler: on the [upstream](https://github.com/BrendelGroup/bghandbook) github site, follow the instructions under the __Fork__ button.
-Once you have your __fork__, you will see the address for creating a clone (e.g., https://github.com/vpbrendel/bghandbook.git for user _vpbrendel_).
+Once you have your __fork__, you will see the address for creating a clone (e.g., https://github.com/vpbrendel/bghandbook.git for user _vpbrendel_).  On your computer, move to the desired directory and download your new clone (replace the address with the one provided from your fork):
+```bash
+[]git clone https://github.com/YOUR_USERNAME/bghandbook.git
+```
 
 ### From __sandbox__ to __origin__
 
