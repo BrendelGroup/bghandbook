@@ -61,7 +61,7 @@ if (defined($args{d})) {
   }
 }
 
-my $mmthreshold = 1.2;
+my $mmthreshold = 0.09;
 if (defined($args{t})) {
   $mmthreshold = $args{t};
 }
@@ -151,6 +151,7 @@ sub motifdistance {
   my ($s,$k,$l,$o);
   my $dst = 0.0;
   my (@tmpds1,@tmpd1s);
+  my ($minvs1,$minxs1,$minv1s,$minx1s);
 
   my $width1 = keys %{$motifset{$motif1}};
   my $width2 = keys %{$motifset{$motif2}};
@@ -176,7 +177,11 @@ sub motifdistance {
     $dst = $dst/($k-1);
     push (@tmpds1,$dst);
   }
-  my ($minvs1,$minxs1) = argmin(@tmpds1);
+  if ($#tmpds1 > 0) {
+    ($minvs1,$minxs1) = argmin(@tmpds1);
+  } else {
+    ($minvs1,$minxs1) = (2*$mmthreshold,-1);
+  }
 
   @tmpd1s = ();
   for ($s=1; $s<=$width2-$delta+1; $s++) {
@@ -196,20 +201,32 @@ sub motifdistance {
     $dst = $dst/($k-1);
     push (@tmpd1s,$dst);
   }
-  my ($minv1s,$minx1s) = argmin(@tmpd1s);
-
-  if ($minv1s < $minvs1) {
-    $o = $minx1s + 1;
-    if ($debug) {
-      print "\n... the best alignment occurs for offsets 1/$o with distance $minv1s\n";
-    }
-    return (1,$o,$minv1s);
+  if ($#tmpd1s > 0) {
+    ($minv1s,$minx1s) = argmin(@tmpd1s);
   } else {
-    $o = $width1-$delta+1 - $minxs1;
+    ($minv1s,$minx1s) = (2*$mmthreshold,-1);
+  }
+ 
+  if ($minxs1 + $minx1s == -2) {
     if ($debug) {
-      print "\n... the best alignment occurs for offsets $o/1 with distance $minvs1\n";
+      print "\n... no alignment with overlap >= $delta possible\n";
     }
-    return ($o,1,$minvs1);
+    return (-1,-1,2*$mmthreshold);
+  }
+  else {
+    if ($minv1s < $minvs1) {
+      $o = $minx1s + 1;
+      if ($debug) {
+        print "\n... the best alignment occurs for offsets 1/$o with distance $minv1s\n";
+      }
+      return (1,$o,$minv1s);
+    } else {
+      $o = $width1-$delta+1 - $minxs1;
+      if ($debug) {
+        print "\n... the best alignment occurs for offsets $o/1 with distance $minvs1\n";
+      }
+      return ($o,1,$minvs1);
+    }
   }
 
 }
