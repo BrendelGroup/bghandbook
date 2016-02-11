@@ -1,34 +1,31 @@
 #! /usr/bin/perl -w
 #
 # MotifSetReduce.pl
-# Version of February 10, 2016.  Volker Brendel
+# Version of February 8, 2016.  Volker Brendel
 
 use strict;
 use Getopt::Std;
 use Data::Dumper;
 
 my $debug = 0;
-my $L1THRESHOLD = 0.6;
-my $L2THRESHOLD = 0.75;
+my $CONS1 = 0.6;
+my $CONS2 = 0.75;
 
 
 
 
-my $USAGE="\nUsage: $0 -m motiffile [-v] [-l mmlength][-t mmthreshold] [-r icthreshold]\n
+my $USAGE="\nUsage: $0 -m motiffile [-v] [-d delta][-t mmthreshold]\n
 
 
 ** This script reads input from a DNA motif file (required option -m) which is meant to
    contain multiple related DNA motifs as frequency matrices.
    The script will reduce this set to non-redundant consensus motifs based on the parameters
-   mmlength (default: 5), mmthreshold (default: 0.09), and icthreshold (default: 0.5).
+   delta (default: 5) and mmthreshold (default: 0.09).
 
-   mmlength refers to the minimum number of overlapping positions between motifs for a pairwise
-   distance to be calculated and the minimum width of a motif to be considered for the final set.
+   delta refers to the minimum number of overlapping positions between motifs for a pairwise
+   distance to be calculated.
 
    mmthreshold refers to the maximum distance for motifs to be candidates for merging.
-
-   icthreshold refers to the minimal information content for motif end positions to be retained
-    (use -r 2.0 to disable trimming of motifs).
 
    -v generates verbose output (for debugging, set the variable $debug to 1 in the code).
  
@@ -36,7 +33,7 @@ my $USAGE="\nUsage: $0 -m motiffile [-v] [-l mmlength][-t mmthreshold] [-r icthr
 
 
 my %args;
-getopts('m:vl:t:c:', \%args);
+getopts('m:vd:t:', \%args);
 
 my ($MFILE);
 if (!defined($args{m})) {
@@ -54,32 +51,26 @@ if ($args{v}) {
   $verbose = 1;
 }
 
-my $mmlength = 5;
-if (defined($args{l})) {
-  $mmlength = $args{l};
-  if ($mmlength !~ /\d+/) {
-    print "\n  Error: argument of -l option must be integer.\n\n";
+my $delta = 5;
+if (defined($args{d})) {
+  $delta = $args{d};
+  if ($delta !~ /\d+/) {
+    print "\n  Error: argument of -d option must be integer.\n\n";
     print $USAGE;
     exit;
   }
 }
 
-my $mmthreshold = 0.09;
+my $mmthreshold = 1.2;
 if (defined($args{t})) {
   $mmthreshold = $args{t};
 }
 
-my $icthreshold = 0.5;
-if (defined($args{c})) {
-  $icthreshold = $args{c};
-}
 
-
-print "Now running MotifSetReduce.pl with arguments -m $msfile -l $mmlength -t $mmthreshold -c $icthreshold ...\n\n";
+print "Now running MotifSetReduce.pl with arguments -m $msfile -d $delta -t $mmthreshold ...\n\n";
 
 my $line;
 my %motifset;
-my %motifIC;
 my ($motif1, $motif2);
 my ($row1, $nbrows1, $row2, $nbrows2);
 my $r;
@@ -146,7 +137,6 @@ while ($mrgm12d < $mmthreshold) {
   ($mrgmtf1,$mrgmtf2,$mrgm12d,$mrgmtf1a,$mrgmtf2a) = mspwd();
 }
 
-trimByIC();
 displaymotifset();
   
 #END main program
@@ -161,7 +151,6 @@ sub motifdistance {
   my ($s,$k,$l,$o);
   my $dst = 0.0;
   my (@tmpds1,@tmpd1s);
-  my ($minvs1,$minxs1,$minv1s,$minx1s);
 
   my $width1 = keys %{$motifset{$motif1}};
   my $width2 = keys %{$motifset{$motif2}};
@@ -170,7 +159,7 @@ sub motifdistance {
   }
 
   @tmpds1 = ();
-  for ($s=$width1-$mmlength+1;$s>1;$s--) {
+  for ($s=$width1-$delta+1;$s>1;$s--) {
     if ($debug) {
       print "... calculating distance for offsets $s/1:\n";
     }
@@ -187,14 +176,10 @@ sub motifdistance {
     $dst = $dst/($k-1);
     push (@tmpds1,$dst);
   }
-  if ($#tmpds1 > 0) {
-    ($minvs1,$minxs1) = argmin(@tmpds1);
-  } else {
-    ($minvs1,$minxs1) = (2*$mmthreshold,-1);
-  }
+  my ($minvs1,$minxs1) = argmin(@tmpds1);
 
   @tmpd1s = ();
-  for ($s=1; $s<=$width2-$mmlength+1; $s++) {
+  for ($s=1; $s<=$width2-$delta+1; $s++) {
     if ($debug) {
       print "... calculating distance for offsets 1/$s:\n";
     }
@@ -211,32 +196,20 @@ sub motifdistance {
     $dst = $dst/($k-1);
     push (@tmpd1s,$dst);
   }
-  if ($#tmpd1s > 0) {
-    ($minv1s,$minx1s) = argmin(@tmpd1s);
-  } else {
-    ($minv1s,$minx1s) = (2*$mmthreshold,-1);
-  }
- 
-  if ($minxs1 + $minx1s == -2) {
+  my ($minv1s,$minx1s) = argmin(@tmpd1s);
+
+  if ($minv1s < $minvs1) {
+    $o = $minx1s + 1;
     if ($debug) {
-      print "\n... no alignment with overlap >= $mmlength possible\n";
+      print "\n... the best alignment occurs for offsets 1/$o with distance $minv1s\n";
     }
-    return (-1,-1,2*$mmthreshold);
-  }
-  else {
-    if ($minv1s < $minvs1) {
-      $o = $minx1s + 1;
-      if ($debug) {
-        print "\n... the best alignment occurs for offsets 1/$o with distance $minv1s\n";
-      }
-      return (1,$o,$minv1s);
-    } else {
-      $o = $width1-$mmlength+1 - $minxs1;
-      if ($debug) {
-        print "\n... the best alignment occurs for offsets $o/1 with distance $minvs1\n";
-      }
-      return ($o,1,$minvs1);
+    return (1,$o,$minv1s);
+  } else {
+    $o = $width1-$delta+1 - $minxs1;
+    if ($debug) {
+      print "\n... the best alignment occurs for offsets $o/1 with distance $minvs1\n";
     }
+    return ($o,1,$minvs1);
   }
 
 }
@@ -373,17 +346,17 @@ sub mergemotifs {
  
 
 sub displaymotifset {
-  my ($i,$ric, $sum);
+  my $i;
+  my $sum;
   print "\n\nConsensus motifs at merging threshold $mmthreshold:\n";
-  foreach $motif1 (sort {$motifIC{$b} <=> $motifIC{$a}} keys (%motifset)) {
+  foreach $motif1 (sort keys (%motifset)) {
     $nbrows1 = keys %{$motifset{$motif1}};
-    printf "\nDE\t$motif1 ($nbrows1 positions) IC= %6.3f\n", $motifIC{$motif1};
+    print "\nDE\t$motif1 ($nbrows1 positions)\n";
     foreach $row1 (sort keys (%{$motifset{$motif1}})) {
-      $ric = calcIC(@{$motifset{$motif1}{$row1}});
       for ($i=0;$i<$#{$motifset{$motif1}{$row1}};$i++) {
         printf "%5.3f\t", ${\@{$motifset{$motif1}{$row1}}}[$i];
       }
-      printf "%5.3f\t%s\t%5.3f\n", ${\@{$motifset{$motif1}{$row1}}}[$i], frq2c(${\@{$motifset{$motif1}{$row1}}}[0],${\@{$motifset{$motif1}{$row1}}}[1],${\@{$motifset{$motif1}{$row1}}}[2],${\@{$motifset{$motif1}{$row1}}}[3]), $ric;
+      printf "%5.3f\t%s\n", ${\@{$motifset{$motif1}{$row1}}}[$i], row2consensus(${\@{$motifset{$motif1}{$row1}}}[0],${\@{$motifset{$motif1}{$row1}}}[1],${\@{$motifset{$motif1}{$row1}}}[2],${\@{$motifset{$motif1}{$row1}}}[3]);
     }
     print "XX\n";
   }
@@ -392,118 +365,63 @@ sub displaymotifset {
 
 #Adapted from STAMP formatMotifs.pl:
 #
-
-sub frq2c{
-  my @f = ();
-  $f[0] = $_[0];  $f[1] = $_[1]; $f[2] = $_[2]; $f[3] = $_[3];
-
-  my @dgc = ("Y", "R", "W", "S", "K", "M");
-  
-  my @dgf = ();  
-  $dgf[0] = $f[1]+$f[3];
-  $dgf[1] = $f[0]+$f[2];
-  $dgf[2] = $f[0]+$f[3];
-  $dgf[3] = $f[1]+$f[2];
-  $dgf[4] = $f[2]+$f[3];
-  $dgf[5] = $f[0]+$f[1];
-  
-  my ($fmax,$cchar);
-
-  if    ($f[0] >= $L1THRESHOLD) {$cchar="A";}
-  elsif ($f[1] >= $L1THRESHOLD) {$cchar="C";}
-  elsif ($f[2] >= $L1THRESHOLD) {$cchar="G";}
-  elsif ($f[3] >= $L1THRESHOLD) {$cchar="T";}
-  else {
-    $fmax  = $L2THRESHOLD;
-    $cchar = "N";
-    for (my $l=0;$l<6;$l++) {
-      if ($dgf[$l] >= $fmax) {
-        $fmax  = $dgf[$l];
-        $cchar = $dgc[$l];
-      }
-    }
-  }
-  return($cchar);
-}
-
-
+		
 sub calcIC {
-  my $sum = 0;
-  for (my $l=0; $l<4; $l++){
-    if($_[$l]>0){
-      $sum +=$_[$l] * (log($_[$l])/log(2));
-    }
-  }
-  return(2+$sum);
-}
- 
-
-sub trimByIC {
-  my ($i,$ric,@ric);
-  my ($sum, $msum, $cbeg, $mbeg, $mend);
-
-  foreach $motif1 (sort keys (%motifset)) {
-    $nbrows1 = keys %{$motifset{$motif1}};
-    @ric = ();
-    $sum = 0;
-    foreach $row1 (sort keys (%{$motifset{$motif1}})) {
-      $ric = calcIC(@{$motifset{$motif1}{$row1}});
-      push(@ric,$ric);
-    }
-
-    for ($i=0;$i<$mmlength;$i++) {
-      $sum += $ric[$i];
-    }
-    $msum = $sum; $cbeg = 0; $mbeg = 0; $mend = $nbrows1-1;
-    for ($i=1;$i<=$nbrows1-$mmlength;$i++) {
-      $sum = $sum - $ric[$i-1] + $ric[$i+$mmlength-1];
-      if ($sum > $msum) {
-        $msum = $sum; $cbeg = $i;
-      }
-    }
-    for ($i=0;$i<$cbeg;$i++) {
-      if ($ric[$i] < $icthreshold) {
-        $mbeg++;
-      }
-      else {last;}
-    }
-    for ($i=$nbrows1-1;$i>$cbeg+$mmlength-1;$i--) {
-      if ($ric[$i] < $icthreshold) {
-        $mend--;
-      }
-      else {last;}
-    }
-
-    $sum = 0;
-    for ($i=$mbeg;$i<=$mend;$i++) {
-      $sum+= $ric[$i];
-    }
-    if ($mbeg > 0  ||  $mend < $nbrows1-1) {
-      if ($debug) {printf "\nMotif $motif1 ($nbrows1) rows) should be trimmed to rows %2d to %2d with IC %6.3f\n", $mbeg+1, $mend+1, $sum;}
-      trim_motif($motif1,$mbeg,$mend,$sum);
-    }
-    else {
-      $motifIC{$motif1} = $sum;
-    }
-  }
+	my $sum = 0;
+	my $total=0;
+	for (my $ic=0; $ic<4; $ic++) {
+		if($_[$ic]>0){
+			$total+=$_[$ic];
+		}
+	}
+	for (my $ic=0; $ic<4; $ic++){
+		if($_[$ic]>0){
+			$sum +=$_[$ic]/$total * (log($_[$ic]/$total)/log(2));
+		}
+	}
+	return(2+$sum);
 }
 
 
-sub trim_motif {
-  my $motif = $_[0];
-  my $mbeg  = $_[1];
-  my $mend  = $_[2];
-  my $sum   = $_[3];
-  my ($i,$k,$l);
-  my $trimmedmotif = $motif . "t";
+sub row2consensus{
+	my @f=();
+	$f[0] = $_[0];	
+	$f[1] = $_[1];
+	$f[2] = $_[2];
+	$f[3] = $_[3];
+	#Hard-coded consensus alphabet rules
+	my @two_base_l = ("Y", "R", "W", "S", "K", "M");
+	
+	my $sum=0;
+	for(my $g=0; $g<4; $g++){
+		$sum+=$f[$g];
+	}
+	
+	my @two_base_c =();	
+	$two_base_c[0]=($f[1]+$f[3])/$sum;
+	$two_base_c[1]=($f[0]+$f[2])/$sum;
+	$two_base_c[2]=($f[0]+$f[3])/$sum;
+	$two_base_c[3]=($f[1]+$f[2])/$sum;
+	$two_base_c[4]=($f[2]+$f[3])/$sum;
+	$two_base_c[5]=($f[0]+$f[1])/$sum;
+	
+        my $curr;
+        my $p_max;
 
-  for ($i=$mbeg; $i <= $mend; $i++) {
-    $k = $i-$mbeg+1;
-    $l = $i+1;
-    if ($k < 10) {$row1 = "row" . "0$k";} else {$row1 = "row" . "$k";}
-    if ($l < 10) {$row2 = "row" . "0$l";} else {$row2 = "row" . "$l";}
-    @{$motifset{$trimmedmotif}{$row1}}= @{$motifset{$motif}{$row2}};
-  }
-  delete $motifset{$motif};
-  $motifIC{$trimmedmotif} = $sum;
+	if($f[0]/$sum>=$CONS1) {$curr="A";}
+	elsif($f[1]/$sum>=$CONS1) {$curr="C";}
+	elsif($f[2]/$sum>=$CONS1) {$curr="G";}
+	elsif($f[3]/$sum>=$CONS1) {$curr="T";}
+	else {
+		$curr="N";
+		$p_max=$CONS2;
+		for(my $h=0;$h<6;$h++) {
+			if($two_base_c[$h]>=$p_max) {
+				$p_max=$two_base_c[$h];
+				$curr=$two_base_l[$h];
+			}
+		}
+	}
+	
+	return($curr);
 }
