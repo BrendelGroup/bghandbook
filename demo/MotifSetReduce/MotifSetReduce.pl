@@ -454,7 +454,7 @@ sub trimByIC {
     for ($i=0;$i<$mmlength;$i++) {
       $sum += $ric[$i];
     }
-    $msum = $sum; $mbeg = 0; $mend = $nbrows1-1;
+    $msum = $sum; $cbeg = 0; $mbeg = 0; $mend = $nbrows1-1;
     for ($i=1;$i<=$nbrows1-$mmlength;$i++) {
       $sum = $sum - $ric[$i-1] + $ric[$i+$mmlength-1];
       if ($sum > $msum) {
