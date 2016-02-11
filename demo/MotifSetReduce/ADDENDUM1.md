@@ -59,11 +59,29 @@ value in between for other frequency vectors).
 Thus, the more distinctive the frequency vector is in a given position, the
 closer to the maximum value of 2 is its information content.
 
-The remainder is an adaptation from the _formatMotifs.pl_ script in the STAMP
-repository.
+The remainder is an adaptation from the _formatMotifs.pl_ script in the
+[STAMP repository](https://github.com/shaunmahony/stamp.git).
 For any motif, we define its core as the continuous _$mmlength_ rows with
 maximal cumulative information content (here, _$mmlength_ is the user-set minimal length of motifs to be considered; called _$delta_ in Version 1 of
 _MotifSetReduce.pl_).
 Then we trim from the original motif left and right ends towards the core,
 eliminating end positions of information content less than the user-set
-threshold _$mmthreshold_).
+threshold _$mmthreshold_.
+
+The trimming is implemented in the subroutines _trimByIC()_ and _trim_motif()_.
+Thanks to our nice data structure _%motifset_, printing out the final trimmed
+motif set in decreasing order of overall information content is simply a
+matter of invoking the Perl syntax for ordering a hash by hash values; see
+_displaymotifset()_ for details.
+
+### What's next?
+Is this the end of the story then?
+Probably not.
+We could add a filter to eliminate trimmed motifs of poor overall quality.
+We might want to have different output options for the motifs so that the
+output could directly feed into other programs.
+In some cases, we might want to have a more convenient display of the various
+merging and trimming actions (i.e., think about the _-v_ verbose output, or
+additional flags).
+But, the next step should be the next step in the creative cycle: apply What
+we have, test it thoroughly, get new ideas in the process.
