@@ -1,6 +1,6 @@
 # How to document your work and insights
 
-You who is reading the set of documents in this directory of the [Brendel Group Handbook](https://github.com/BrendelGroup/bghandbook) may be wondering how we produce such nice documentation.
+You who are reading the set of documents in this directory of the [Brendel Group Handbook](https://github.com/BrendelGroup/bghandbook) may be wondering how we produce such nice documentation.
 Here we review several components of this question:
  - how to edit documentation
  - how to determine the scope of documentation
@@ -29,7 +29,7 @@ The typical answer to a question as broad as "what should be documented" is the 
 The bottom line is that our handbook should be useful.
 There is little point in duplicating excellent and easily available resources.
 But for some topics, a quick summary and pointers to other resources, conveniently available to us in one place, will be hugely helpful - both to direct new group members and students to what operational knowledge and skills they need to acquire (and do so quickly) and also for future reference (few of us remember everything we ever learned).
-Thus we will make selections based on experience.
+Thus, we will make selections based on experience.
 We will keep the handbook as concise as possible and as comprehensive as necessary.
 Group members are strongly encouraged to contribute draft documentation on topics of common interest.
 Our editorial board will be happy to review contributions and expand our repository consistently with the stated goals of our handbook project.
