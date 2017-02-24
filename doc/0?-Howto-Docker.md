@@ -27,6 +27,7 @@ The key to packaging your own application as a Docker image is a script called a
 This script, by default *named* "Dockerfile", is saved in a directory containing any files that the image you are building will need.
 Everything in this directory will be imported by the Docker daemon during the build, so don't include extraneous material.
 Detailed documentation on creating Dockerfiles is [available](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) on the Docker website.
+
 Essentially, the Dockerfile is a recipe that takes the form of a series of instructions.
 The first instruction is always "FROM", and it designates a base image from which your image will be built.
 This will often be one of the Linux images available in the repositories.
