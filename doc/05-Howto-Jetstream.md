@@ -72,18 +72,24 @@ If I am on a big screen, I immediately adjust the desktop by entering a nifty co
 Furthermore, I prefer a different terminal default, and after __Edit__/__Preferences__/__Colors__/__Load Presets__ from the terminal top bar, selection __Black on White__, I am finally satisfied:
 ![Image](./img/JetstreamVMdesktop2.PNG?raw=true)
 
-
-
-
-### From __sandbox__ to __origin__
-
+Well, actually, not quite, because I also like to have my familiar __bash__ aliases available, see my familiar directory structure, and have my __bash__ PATH variable correctly set for use.
+After going over such setup steps for loads of VMs I have launched, I finally decided to streamline that process to a very simple protocol:
 
 ```bash
-[]git remote -v
-origin	https://github.com/vpbrendel/bghandbook.git (fetch)
-origin	https://github.com/vpbrendel/bghandbook.git (push)
+[]git clone https://github.com/vpbrendel/VMutil
+[]more VMutil/xstartoverJS
 ```
+as shown on the next screenshot:
+![Image](./img/JetstreamVMdesktop3.PNG?raw=true)
+
+Bottom line, excuting __VMutil/xstartoverJS__ sets up all my familiar environment.
+In __VMutil/ulsUbuntu__ I find the file __paths2add__, and I dutifully put them into the right spot in my __~/.profile__ file:
+![Image](./img/JetstreamVMdesktop4.PNG?raw=true)
+
+Another
 
 ```bash
-[]git push origin master
+[]source ~/.profile
 ```
+
+and the VM is really good to go.
