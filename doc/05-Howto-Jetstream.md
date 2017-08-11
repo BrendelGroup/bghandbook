@@ -63,7 +63,7 @@ At the prompt type
 where _<username>_ should of course be your Jetstream user name.
 Set the password as you see fit.
 Now you can __exit__ out of the __Open Web Shell__ and instead log into your VM via VNC, using the IP address followed by ":1" as address and your user name and password as just set on the commandline.
-Now ![Image](../blob/master/doc/img/JetstreamVMvnc.png?raw=true)
+Now ![Image](./doc/img/JetstreamVMvnc.png?raw=true)
 
 
 
