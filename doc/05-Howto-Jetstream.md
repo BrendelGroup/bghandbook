@@ -69,6 +69,7 @@ Let's immediately customize the view.
 Click on __Use default config__ and lauch a terminal from the icon in the bottom panel that will have shown up.
 If I am on a big screen, I immediately adjust the desktop by entering a nifty command to change the screen size:
 ![Image](./img/JetstreamVMdesktop1.PNG?raw=true)
+Furthermore, I prefer a different terminal default, and after __Edit__/__Preferences__/__Colors__/__Load Presets__ from the terminal top bar, selection __Black on White__, I am finally satisfied.
 
 
 
