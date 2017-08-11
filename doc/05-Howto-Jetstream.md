@@ -63,7 +63,13 @@ At the prompt type
 where _<username>_ should of course be your Jetstream user name.
 Set the password as you see fit.
 Now you can __exit__ out of the __Open Web Shell__ and instead log into your VM via VNC, using the IP address followed by ":1" as address and your user name and password as just set on the commandline.
-Now ![Image](./img/JetstreamVMvnc.PNG?raw=true)
+Now you should see a desktop screen like the following showing up:
+![Image](./img/JetstreamVMvnc.PNG?raw=true)
+Let's immediately customize the view.
+Click on __Use default config__ and lauch a terminal from the icon in the bottom panel that will have shown up.
+If I am on a big screen, I immediately adjust the desktop by entering a nifty command to change the screen size:
+![Image](./img/JetstreamVMdesktop1.PNG?raw=true)
+
 
 
 
