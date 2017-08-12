@@ -93,3 +93,49 @@ Another
 ```
 
 and the VM is really good to go.
+
+
+## Using your __bgRAMOSE__ VM
+Ok, what are we going to do with this nice VM now?
+Any login terminal on your VM should provide the following lines
+
+```bash
+Welcome to your instance of Jetstream bgRAMOSE.
+Please see /usr/local/share/bgRAMOSE/0README for helpful hints.
+```
+
+The next screenshot shows was we will see if we follow the hints:
+![Image](./img/JetstreamVMdesktop5.PNG?raw=true)
+
+Let's follow what the first lead, __/usr/local/share/bgRAMOSE/MMB/0README__.
+This is a great example, following the T.R.Taylor & V.P. Brendel (2017) _Methods in Molecular Biology_ article describing our __GoRAMPAGE__/__TSRchitect__ workflow for the analysis of transcription start site (TSS) profiling experiments.
+The instructions allow a user to completely reproduce the workflow described in the article, with all requisite software already pre-installed on their VM.
+Once launched, your desktop might look like this
+![Image](./img/JetstreamVMdesktop6.PNG?raw=true)
+
+Ok, what did we say?
+Time to go for a run, sleep, have lunch with your partner, whatever ...
+Eventually, the job will finish.
+Why?
+Because you are on a VM where everything has been tested.
+You are simply repeating what was done before.
+
+Eventually, you go back to your VM desktop and can pull up results like this:
+![Image](./img/JetstreamVMdesktop7.PNG?raw=true)
+
+
+## So why is this a __big deal__?
+What did we just achieve?
+We reproduced a rather complex study, involving many steps of data acquisition, data processing, and statistical analysis of data.
+Thus, we can truly discuss the merits of the approach and the authors' interpretation - but there is no ambiguity about what exactly they did.
+It's right here - nothing hidden, nothing vague.
+Ah, yes, that's __science__, you exclaim!
+But, really, in your experience, how many published science articles ever live up to this standard, that everything should be _easily_ reproducible?
+Is there any excuse in computational work for anything less?
+No, certainly not in the age of virtual machines.
+Jetstream __bgRAMOSE__ plainly leaves no wiggle room: put out your data work exactly as you describe it, and everyone shall be able to reproduce it.
+Onward to the interesting questions: What does your study really show? What new insights does your data work provide?
+
+
+## Appendix: Some fine points.
+
