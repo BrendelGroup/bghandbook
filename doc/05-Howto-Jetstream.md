@@ -55,9 +55,11 @@ If you have set up ssh (see above), you can access the machine in that way.
 Simpler for now is to click on the VM icon in your __Instances__ list and follow the __Open Web Shell__ link on the righthand side; see what a [successful Web Shell login](https://iujetstream.atlassian.net/wiki/display/JWT/Logging+in+with+Web+Shell) should lool like.
 As we want to access the VM via VNC, we only have to login in this way once.
 At the prompt type
+
 ```bash
 []sudo passwd <username>
 ```
+
 where _\<username\>_ should of course be your Jetstream user name.
 Set the password as you see fit.
 Now you can __exit__ out of the __Open Web Shell__ and instead log into your VM via VNC, using the IP address followed by ":1" as address and your user name and password as just set on the commandline.
@@ -72,9 +74,12 @@ Furthermore, I prefer a different terminal default, and after __Edit__/__Prefere
 
 Well, actually, not quite, because I also like to have my familiar __bash__ aliases available, see my familiar directory structure, and have my __bash__ PATH variable correctly set for use.
 After going over such setup steps for loads of VMs I have launched, I finally decided to streamline that process to a very simple protocol:
+
 ```bash
 []git clone https://github.com/vpbrendel/VMutil
 []more VMutil/xstartoverJS
+```
+
 as shown on the next screenshot:
 ![Image](./img/JetstreamVMdesktop3.PNG?raw=true)
 
@@ -83,19 +88,23 @@ In __VMutil/ulsUbuntu__ I find the file __paths2add__, and I dutifully put the l
 ![Image](./img/JetstreamVMdesktop4.PNG?raw=true)
 
 Another
+
 ```bash
 []source ~/.profile
 ```
+
 and the VM is really good to go.
 
 
 ## Using your __bgRAMOSE__ VM
 Ok, what are we going to do with this nice VM now?
 Any login terminal on your VM should display the following lines
+
 ```bash
 Welcome to your instance of Jetstream bgRAMOSE.
 Please see /usr/local/share/bgRAMOSE/0README for helpful hints.
 ```
+
 The next screenshot shows what we will see if we look at the hints:
 ![Image](./img/JetstreamVMdesktop5.PNG?raw=true)
 
@@ -115,6 +124,7 @@ You are simply repeating what was done before.
 We should mention one caveat: The workflow involves download of data from NCBI using the __fastq_dump__ tool.
 Should the network connection of the VM fail during download, the acquisition of the data might be incomplete.
 In this example, your initial __prep_script__ step should produce output as follows.
+
 ```bash
 Read 11666648 spots for SRR424683
 Written 11666648 spots for SRR424683
