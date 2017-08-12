@@ -157,5 +157,75 @@ Jetstream __bgRAMOSE__ plainly leaves no wiggle room: put out your data work exa
 Onward to the interesting questions: What does your study really show? What new insights does your data work provide?
 
 
-## Appendix: Some fine points.
+## Some fine points
+On your __bgRAMOSE__ VM, take a look at _/usr/local/src_:
+```bash
+/usr/local/src
 
+0README    BWASP       MoVRs      xapt               xinstallMoVRs
+anaconda2  CRANmirror  paths2add  xinstallBWASP
+BLAST      GoRAMPAGE   R2install  xinstallGoRAMPAGE
+
+[]
+```
+Following our theme of reproducibility, here you find (in __0README__) the complete record and recipes for turning the __Jetstream__ base __Ubuntu 14.04.3 Development GUI__ image into the current __bgRAMOSE__ image.
+This is helpful in at least two ways: first, we have a template in case we ever need to restart the process from a different base image; second, we have a template for instructions on how to set up (on any machine) software packages we wish to distribute.
+For the latter part, you see that the scripts in _/usr/local/src_ are organized by package name; e.g., __xinstallGoRAMPAGE__ will install prerequisites for the __GoRAMPAGE__ package, then clone __GoRAMPAGE__ from our __github__ repository.
+Typical examples of how to record installation instructions are as follows:
+```bash
+#system-wide package installation
+apt-get install libtool
+apt-get install libxml2-dev
+
+#git cloning and compilation
+mkdir SAMTOOLS; cd SAMTOOLS
+git clone git://github.com/samtools/htslib.git htslib
+cd htslib
+make
+cd ..
+git clone git://github.com/samtools/samtools.git samtools
+cd samtools
+make
+cp samtools /usr/local/bin
+cd ../..
+
+#download of *tar.gz archive and compilation:
+mkdir GENOMETOOLS; cd GENOMETOOLS
+curl -O http://genometools.org/pub/genometools-1.5.9.tar.gz
+tar -xzf genometools-1.5.9.tar.gz
+cd genometools-1.5.9/
+make
+make install
+cd ../..
+
+#installation of Perl modules
+cpanm HTML::Template
+cpanm JSON
+cpanm XML::Simple
+
+#system-wide installation of python packages
+pip install --upgrade cutadapt
+pip install --upgrade networkx
+```
+
+
+## Your contributions next
+Now it's your turn!
+Let's say you are working on __MyProject__, involving some novel software, third-party software, workflows, and data work, all of which need to be documented for your publication.
+What should you do?
+
+* After your initial development on your normal work platforms, fire up a __bgRAMOSE__ VM.
+* In a clean directory (on some attached volume), execute your workflow by script (similar to the __/usr/local/share/bgRAMOSE/MMB/xrunMMB__ script execution discussed above).
+* If the workflow requires particular packages or modules that are not yet on the system, install them and record (as described in the previous section) exactly how this was done in a file __xinstallMyProject__.
+* Provide a __MyProject-0README__ file (similar to the __/usr/local/share/bgRAMOSE/MMB/0README__ documentation).
+* Fire up a second, vanilla, __bgRAMOSE__ VM and copy onto it only your __xinstallMyProject__ and workflow scripts and the documentation.
+* Follow your own instructions verbatim and make sure that everything works as promised.
+
+When all is done, you send your friendly __bgRAMOSE__ VM image collaborators the three __MyProject__ files.
+We'll test them independently, and if all checks out, the next version of the image will make everything available to the world.
+Submit your manuscript for publication, assured that data provenance and workflow reproducibility are perfectly taking care of.
+
+
+## Author information
+Volker Brendel (vbrendel@indiana.edu)
+Go Jetstream!
