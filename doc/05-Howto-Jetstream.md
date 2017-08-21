@@ -1,7 +1,7 @@
 # 01-Howto-Jetstream
 
 Like many bioinformaticians, we are spending a lot of time installing software on our workstations.
-If this does not sound familiar to you, then you likely not doing your job, and we need to have a chat.
+If this does not sound familiar to you, then you are likely not doing your job, and we need to have a chat.
 But hang on: If you have finished reading this document, and then you are still spending a lot of time installing software, then you are doing something wrong, and we need to have a chat!
 In short, this document is about solutions to the waste of time spent on setting up for your real work, particularly when that is a redundant effort, just repeating the struggles of the multitudes before you.
 Your energy should be spent on new frontiers.
@@ -13,7 +13,7 @@ All of these might have prerequisites themselves, and thus the dependency tree c
 Of course, package managers take care of a lot of these issues for us, but still, wouldn't we much rather just snap our fingers and be ready to get on with our research work?
 
 As it were, virtual machines (VMs) are pretty close to the snap-your-fingers solution.
-Here we review use of our __bgRAMOSE__ VM image, which is available through the NSF-funded [Jetstream](https://jetstream.cloud.org) project. 
+Here we review use of our __bgRAMOSE__ VM image, which is available through the NSF-funded [Jetstream](https://jetstream.cloud.org) project.
 Following along, you will have learned all you need to
 
 * use an instance of __bgRAMOSE__ for your own research work
@@ -45,12 +45,12 @@ For now, click on __Launch New Instance__ and type __bgRAMOSE__ into the search 
 Click on the top icon that comes up, corresponding to the latest version, read the description, and click __Launch__.
 Edit the __Instance Name__ to your liking, select _m1.medium_ under __Instance Size__, and launch the instance.
 Your screen will show the progress of the VM deployment.
-You are ready for the next step once the screen indicates status __Active__ and provides an IP number.
+You are ready for the next step once the screen indicates status __Active__ and provides an IP address.
 
 
 ## Customizing your __bgRAMOSE__ VM
 
-Once you have an IP number for your VM, you are ready to access the machine.
+Once you have an IP address for your VM, you are ready to access the machine.
 If you have set up ssh (see above), you can access the machine in that way.
 Simpler for now is to click on the VM icon in your __Instances__ list and follow the __Open Web Shell__ link on the righthand side; see what a [successful Web Shell login](https://iujetstream.atlassian.net/wiki/display/JWT/Logging+in+with+Web+Shell) should lool like.
 As we want to access the VM via VNC, we only have to login in this way once.
@@ -84,7 +84,7 @@ as shown on the next screenshot:
 ![Image](./img/JetstreamVMdesktop3.PNG?raw=true)
 
 Bottom line, excuting __VMutil/xstartoverJS__ sets up all my familiar environment.
-In __VMutil/ulsUbuntu__ I find the file __paths2add__, and I dutifully put the lines nto the right spot in my __~/.profile__ file:
+In __VMutil/ulsUbuntu__ I find the file __paths2add__, and I dutifully put the lines into the right spot in my __~/.profile__ file:
 ![Image](./img/JetstreamVMdesktop4.PNG?raw=true)
 
 Another
@@ -109,7 +109,7 @@ The next screenshot shows what we will see if we look at the hints:
 ![Image](./img/JetstreamVMdesktop5.PNG?raw=true)
 
 Let's follow what the first lead, __/usr/local/share/bgRAMOSE/MMB/0README__.
-This is a great example from the T.R.Taylor & V.P. Brendel (2017) _Methods in Molecular Biology_ article describing our __GoRAMPAGE__/__TSRchitect__ workflow for the analysis of transcription start site (TSS) profiling experiments.
+This is a great example from the R.T. Raborn & V.P. Brendel (2017) _Methods in Molecular Biology_ article describing our __GoRAMPAGE__/__TSRchitect__ workflow for the analysis of transcription start site (TSS) profiling experiments.
 The instructions allow a user to completely reproduce the workflow described in the article, with all requisite software already pre-installed on their VM.
 Once launched, your desktop might look like this
 ![Image](./img/JetstreamVMdesktop6.PNG?raw=true)
@@ -227,5 +227,5 @@ Submit your manuscript for publication, assured that data provenance and workflo
 
 
 ## Author information
-Volker Brendel (vbrendel@indiana.edu)
+Volker Brendel (vbrendel@indiana.edu)  
 Go Jetstream!
