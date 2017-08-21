@@ -285,4 +285,4 @@ However, if there is a problem, hopefully the last few lines of output will make
 The more experience you get with this, the easier it will be to recognize.
 
 Take a look at the terminal recording below for a simple example of a typical software installation.
-<script type="text/javascript" src="https://asciinema.org/a/2077.js" id="asciicast-2077" async></script>
+[![asciicast](https://asciinema.org/a/2077.png)](https://asciinema.org/a/2077)
