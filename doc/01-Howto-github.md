@@ -37,7 +37,7 @@ Once you have your __fork__, you will see the address for creating a clone (e.g.
 
 ### From __sandbox__ to __origin__
 
-If you have set up your __sandbox__ clone in your local __bghandbook__ directory, you should see something like the following (_vpbrendel_ will be replaces by your own __github__ user name):
+If you have set up your __sandbox__ clone in your local __bghandbook__ directory, you should see something like the following (_vpbrendel_ will be replaced by your own __github__ user name):
 
 ```bash
 []git remote -v
