@@ -1,0 +1,55 @@
+# A Dockerfile to build a DISCOVAR de novo Docker image.
+# The image built by this Dockerfile is best run with the working directory 
+# mounted as a volume to the Docker container using the "-v" flag. Example:
+# sudo docker run -v $(pwd):/stuff discovar-docker READS=/stuff/sample-reads.bam OUT_DIR=/stuff/discovardenovo-assembly-aligned REFHEAD=/stuff/sample-genome
+
+# The first instruction for any Dockerfile must be "FROM"
+# "FROM" designates a previous Docker image (often from the public repositories)
+# that serves as the basis for the Docker image being built. In this case, the 
+# latest version of debian that has been experimentally 'slimmed' by removal of
+# things such as man-pages. 
+FROM debian:jessie-slim
+
+# The "ARG" instruction can set an environmental variable during the build stage
+# that does not remain set in the final image. "DEBIAN_FRONTEND=noninteractive"
+# prevents some warnings from apt-get.
+ARG DEBIAN_FRONTEND=noninteractive 
+
+# The "RUN" instruction is used to run command line commands. It is important 
+# that "apt-get update" and "apt-get upgrade" be in the same line because 
+# changes like "apt-get update" and "cd" do not persist between commands. 
+# Instructions may be broken up onto multiple lines for readability with the use
+# of "\". Docker convention is for installation packages to be alphabetically
+# listed. This is helpful for finding things when the list is very long.
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    build-essential \
+    file \
+    libjemalloc-dev \
+    libz-dev \
+    samtools \
+    wget
+
+# Unlike the command "cd", the Docker instruction "WORKDIR" creates a persistent
+# change in the working directory for the instructions following it.
+WORKDIR / 
+
+# The latest version of DISCOVAR de novo can be obtained from their FTP site. 
+# In this case I am pointing at a specific version so that I can use WORKDIR 
+# later in this Dockerfile.
+RUN wget ftp://ftp.broadinstitute.org/pub/crd/DiscovarDeNovo/latest_source_code/discovardenovo-52488.tar.gz && tar -xzf discovardenovo-52488.tar.gz && rm discovardenovo-52488.tar.gz
+WORKDIR /discovardenovo-52488
+RUN ./configure && make all && make install
+
+# If you download and unpack DISCOVAR de novo in the same directory as the 
+# Dockerfile, you can copy it into the image. Everything in the directory 
+# containing the Dockerfile is sent to the docker daemon for use during build.
+#RUN mkdir /discovardenovo-52488
+#COPY discovardenovo-52488 /discovardenovo-52488
+#WORKDIR /discovardenovo-52488
+#RUN ./configure && make all && make install
+
+WORKDIR /
+# The "ENTRYPOINT" instruction, given a command (in this case, "DiscovarDeNovo")
+# means that running the Docker image automatically runs DiscovarDeNovo. 
+# Arguments to the Docker run go directly to the DiscovarDeNovo command.
+ENTRYPOINT ["DiscovarDeNovo"] 
